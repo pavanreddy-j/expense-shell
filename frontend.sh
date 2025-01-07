@@ -34,26 +34,26 @@ echo "Scripts started executing at : $TIMSTAMP" &>>$LOG_FILE_NAME
 
 CHECK_ROOT
 
-dnf install nginx -y 
+dnf install nginx -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing nginx"
 
-systemctl enable nginx
+systemctl enable nginx &>>$LOG_FILE_NAME
 VALIDATE $? "enable nginx"
 
-systemctl start nginx
+systemctl start nginx &>>$LOG_FILE_NAME
 VALIDATE $? "Starting nginx"
 
-rm -rf /usr/share/nginx/html/*
+rm -rf /usr/share/nginx/html/* &>>$LOG_FILE_NAME
 VALIDATE $? "Removing existing version of code"
 
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Downloading latest code"
 
 cd /usr/share/nginx/html
 VALIDATE $? "Moving to HTML Directory"
 
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Unzipping the frontend code"
 
-systemctl restart nginx
+systemctl restart nginx &>>$LOG_FILE_NAME
 VALIDATE $? "Restartinh nginx"
