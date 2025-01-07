@@ -33,13 +33,13 @@ echo "Scripts started executing at : $TIMSTAMP" &>>$LOG_FILE_NAME
 
 CHECK_ROOT
 
-dnf install mysql-server -y
+dnf install mysql-server -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing mysql server"
 
-systemctl enable mysqld 
+systemctl enable mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "Enable mysqld server"
 
-systemctl start mysqld 
+systemctl start mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "Starting mysql server"
 
 mysql_secure_installation --set-root-pass ExpenseApp@1
