@@ -42,7 +42,7 @@ VALIDATE $? "Enable mysqld server"
 systemctl start mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "Starting mysql server"
 
-mysql -h mysql.pavanreddy.store -u root -pExpenseApp@1 -e 'use transactions;' &>>$LOG_FILE_NAME
+mysql -h mysql.pavanreddy.store -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE_NAME
 
 if [ $? -ne 0 ]
 then
