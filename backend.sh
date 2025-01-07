@@ -45,6 +45,15 @@ VALIDATE $? "Install NodeJs"
 useradd expense &>>$LOG_FILE_NAME
 VALIDATE $? "Adding Expense user"
 
+id expense &>>$LOG_FILE_NAME
+if [ $? -ne 0 ]
+then
+    user add expense &>>$LOG_FILE_NAME
+    VALIDATE $? "Adding expense user"
+else
+    echo -e "Expense user already Exist... $Y SKIPPING $N"
+fi
+
 mkdir /app &>>$LOG_FILE_NAME
 VALIDATE $? "Creating app directory"
 
