@@ -59,6 +59,7 @@ curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expen
 VALIDATE $? "Dowaliding backend"
 
 cd /app
+rm -rf /app/*
 
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "UnZip backend"
@@ -79,7 +80,7 @@ VALIDATE $? "Setting up the transcations schema and tables"
 systemctl daemon-reload &>>$LOG_FILE_NAME
 VALIDATE $? "Baemon Reload"
 
-systemctl start backend &>>$LOG_FILE_NAME
+systemctl restart backend &>>$LOG_FILE_NAME
 VALIDATE $? "Starting backend"
 
 systemctl enable backend &>>$LOG_FILE_NAME
