@@ -42,8 +42,6 @@ VALIDATE $? "Enable nodejs 20"
 dnf install nodejs -y &>>$LOG_FILE_NAME
 VALIDATE $? "Install NodeJs"
 
-useradd expense &>>$LOG_FILE_NAME
-VALIDATE $? "Adding Expense user"
 
 id expense &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
